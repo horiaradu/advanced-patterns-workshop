@@ -1,4 +1,4 @@
-import { Equal, Expect } from "../helpers/type-utils";
+import { Equal, Expect } from '../helpers/type-utils';
 
 const addAllOfThisToWindow = {
   add: (a: number, b: number) => a + b,
@@ -6,6 +6,11 @@ const addAllOfThisToWindow = {
   multiply: (a: number, b: number) => a * b,
   divide: (a: number, b: number) => a / b,
 };
+
+declare global {
+  type Foo = typeof addAllOfThisToWindow;
+  interface Window extends Foo {}
+}
 
 Object.assign(window, addAllOfThisToWindow);
 
